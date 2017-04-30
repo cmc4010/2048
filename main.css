@@ -46,7 +46,7 @@ html, body {
 }
 
 .tile {
-	transition-duration: 0.25s;
+	transition-duration: 0.3s;
 	border-radius: 3px;
 	text-align: center;
 	background: #eee4da;
