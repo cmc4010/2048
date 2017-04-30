@@ -21,10 +21,11 @@ var app = {
 		// this.newNode(256, 1, 2);
 		// this.newNode(256, 1, 3);
 		// this.moveLeft();
+
 		// Create nodes at 2 random spots
 
-		this.genNode();
-		this.genNode();
+		app.genNode();
+		app.genNode();
 
 		// add event listeners
 		window.onkeyup = function(e){
@@ -53,6 +54,23 @@ var app = {
 			}
 		}
 	},
+	"tileCount": function(){
+
+		var count = 0;
+
+		this.incCount = function(){
+			count++;
+		}
+
+		this.decCount = function(){
+			count--;
+		}
+
+		this.getCount = function(){
+			return count;
+		}
+
+	},
 	"genNode": function(){
 		while(1){
 			var randNum = Math.floor((Math.random() * 16));
@@ -75,6 +93,8 @@ var app = {
 		}
 		// create Node
 		app.newNode( 2 ** Math.floor((Math.random()*2)+1), row, col );
+		myCount.incCount();
+		console.log(myCount.getCount());
 	},
 	"newNode": function(num, x, y){
 		var myTile = document.createElement("div");
@@ -121,6 +141,7 @@ var app = {
 						adjNode.classList.add("position-" + i + "-" + j);
 						// remove current node
 						tilesDOM.removeChild(curNode);
+						myCount.decCount();
 
 						actionFlag = 1;
 					}
@@ -159,6 +180,7 @@ var app = {
 							adjNode2.classList.add("position-" + i + "-" + j);
 							// remove current node
 							tilesDOM.removeChild(adjNode);
+							myCount.decCount();
 						}
 						else {
 							// shift only
@@ -217,7 +239,7 @@ var app = {
 						adjNode.classList.add("position-" + i + "-" + j);
 						// remove current node
 						tilesDOM.removeChild(curNode);
-
+						myCount.decCount();
 						actionFlag = 1;
 					}
 					else {
@@ -255,6 +277,7 @@ var app = {
 							adjNode2.classList.add("position-" + i + "-" + j);
 							// remove current node
 							tilesDOM.removeChild(adjNode);
+							myCount.decCount();
 						}
 						else {
 							// shift only
@@ -313,7 +336,7 @@ var app = {
 						adjNode.classList.add("position-" + j + "-" + i);
 						// remove current node
 						tilesDOM.removeChild(curNode);
-
+						myCount.decCount();
 						actionFlag = 1;
 					}
 					else {
@@ -351,6 +374,7 @@ var app = {
 							adjNode2.classList.add("position-" + j + "-" + i);
 							// remove current node
 							tilesDOM.removeChild(adjNode);
+							myCount.decCount();
 						}
 						else {
 							// shift only
@@ -409,6 +433,7 @@ var app = {
 						adjNode.classList.add("position-" + j + "-" + i);
 						// remove current node
 						tilesDOM.removeChild(curNode);
+						myCount.decCount();
 						actionFlag = 1;
 					}
 					else {
@@ -446,6 +471,7 @@ var app = {
 							adjNode2.classList.add("position-" + j + "-" + i);
 							// remove current node
 							tilesDOM.removeChild(adjNode);
+							myCount.decCount();
 						}
 						else {
 							// shift only
@@ -472,5 +498,8 @@ var app = {
 	}
 }
 
-console.log(tilesDOM);
+var myCount = new app.tileCount();
+
+// console.log(myCount.getCount());
+
 app.initialize();
