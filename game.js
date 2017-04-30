@@ -31,20 +31,24 @@ var app = {
 			var key = e.keyCode;
 			switch(key){
 				case 37:
-					app.moveLeft();
-					app.genNode();
+					if(app.moveLeft()){
+						setTimeout(app.genNode, 200);
+					}
 					break;
 				case 38:
-					app.moveUp();
-					app.genNode();
+					if(app.moveUp()){
+						setTimeout(app.genNode, 200);
+					}
 					break;
 				case 39:
-					app.moveRight();
-					app.genNode();
+					if(app.moveRight()){
+						setTimeout(app.genNode, 200);
+					}
 					break;
 				case 40:
-					app.moveDown();
-					app.genNode();
+					if(app.moveDown()){
+						setTimeout(app.genNode, 200);
+					}
 					break;
 			}
 		}
@@ -57,10 +61,10 @@ var app = {
 			// get col = x % 4; 15 % 4 = 3
 			// get row = ceil(16/4);
 			// row 4 : 12, 13, 14, 15
-			console.log(randNum);
+			// console.log(randNum);
 			var col = randNum % 4;
 			var row = Math.floor(randNum / 4);
-			console.log(col + " " + row);
+			// console.log(col + " " + row);
 			var node = document.getElementsByClassName("position-" + row + "-" + col)[0];
 			if(node){
 				continue;
@@ -70,7 +74,7 @@ var app = {
 			}
 		}
 		// create Node
-		this.newNode( 2 ** Math.floor((Math.random()*2)+1), row, col );
+		app.newNode( 2 ** Math.floor((Math.random()*2)+1), row, col );
 	},
 	"newNode": function(num, x, y){
 		var myTile = document.createElement("div");
@@ -86,12 +90,13 @@ var app = {
 		// query by class name
 		var i;
 		var j;
+		var actionFlag = 0;
 		for(i = 0; i < 4; i++){ // i = row
 			for(j = 0; j < 3; j++){ // j = column
 
 				// node on current spot
 				var curNode = document.getElementsByClassName("position-" + i + "-" + j)[0];
-				console.log(i + "," + j + "== curNode: " + curNode);
+				// console.log(i + "," + j + "== curNode: " + curNode);
 				// search right
 				var k;
 				adjNode = undefined;
@@ -101,7 +106,7 @@ var app = {
 						break;
 					}
 				}
-				console.log(i + "," + j + "== adjNode: " + adjNode);
+				// console.log(i + "," + j + "== adjNode: " + adjNode);
 				
 				// attempt merge
 				if(curNode){
@@ -116,6 +121,8 @@ var app = {
 						adjNode.classList.add("position-" + i + "-" + j);
 						// remove current node
 						tilesDOM.removeChild(curNode);
+
+						actionFlag = 1;
 					}
 					else {
 						// do nothing
@@ -134,7 +141,7 @@ var app = {
 						}
 					}
 
-					console.log(i + "," + j + "== adjNode2: " + adjNode2);
+					// console.log(i + "," + j + "== adjNode2: " + adjNode2);
 
 					// attempt merge
 					if(adjNode2){
@@ -166,6 +173,7 @@ var app = {
 						adjNode.classList.remove(adjNode.classList[2]);
 						adjNode.classList.add("position-" + i + "-" + j);
 					}
+					actionFlag = 1;
 				}
 				else {
 					// empty row
@@ -173,16 +181,18 @@ var app = {
 				}
 			}
 		}
+		return actionFlag;
 	},
 	"moveRight": function(){
 		var i;
 		var j;
+		var actionFlag = 0;
 		for(i = 0; i < 4; i++){ // i = row
 			for(j = 3; j > 0; j--){ // j = column
 
 				// node on current spot
 				var curNode = document.getElementsByClassName("position-" + i + "-" + j)[0];
-				console.log(i + "," + j + "== curNode: " + curNode);
+				// console.log(i + "," + j + "== curNode: " + curNode);
 				// search right
 				var k;
 				adjNode = undefined;
@@ -192,7 +202,7 @@ var app = {
 						break;
 					}
 				}
-				console.log(i + "," + j + "== adjNode: " + adjNode);
+				// console.log(i + "," + j + "== adjNode: " + adjNode);
 				
 				// attempt merge
 				if(curNode){
@@ -207,6 +217,8 @@ var app = {
 						adjNode.classList.add("position-" + i + "-" + j);
 						// remove current node
 						tilesDOM.removeChild(curNode);
+
+						actionFlag = 1;
 					}
 					else {
 						// do nothing
@@ -225,7 +237,7 @@ var app = {
 						}
 					}
 
-					console.log(i + "," + j + "== adjNode2: " + adjNode2);
+					// console.log(i + "," + j + "== adjNode2: " + adjNode2);
 
 					// attempt merge
 					if(adjNode2){
@@ -257,6 +269,7 @@ var app = {
 						adjNode.classList.remove(adjNode.classList[2]);
 						adjNode.classList.add("position-" + i + "-" + j);
 					}
+					actionFlag = 1;
 				}
 				else {
 					// empty row
@@ -264,16 +277,18 @@ var app = {
 				}
 			}
 		}
+		return actionFlag;
 	},
 	"moveUp": function(){
 		var i;
 		var j;
+		var actionFlag = 0;
 		for(i = 0; i < 4; i++){ // i = column
 			for(j = 0; j < 3; j++){ // j = row
 
 				// node on current spot
 				var curNode = document.getElementsByClassName("position-" + j + "-" + i)[0];
-				console.log(j + "," + i + "== curNode: " + curNode);
+				// console.log(j + "," + i + "== curNode: " + curNode);
 				// search right
 				var k;
 				adjNode = undefined;
@@ -283,7 +298,7 @@ var app = {
 						break;
 					}
 				}
-				console.log(j + "," + i + "== adjNode: " + adjNode);
+				// console.log(j + "," + i + "== adjNode: " + adjNode);
 				
 				// attempt merge
 				if(curNode){
@@ -298,6 +313,8 @@ var app = {
 						adjNode.classList.add("position-" + j + "-" + i);
 						// remove current node
 						tilesDOM.removeChild(curNode);
+
+						actionFlag = 1;
 					}
 					else {
 						// do nothing
@@ -316,7 +333,7 @@ var app = {
 						}
 					}
 
-					console.log(j + "," + i + "== adjNode2: " + adjNode2);
+					// console.log(j + "," + i + "== adjNode2: " + adjNode2);
 
 					// attempt merge
 					if(adjNode2){
@@ -348,6 +365,7 @@ var app = {
 						adjNode.classList.remove(adjNode.classList[2]);
 						adjNode.classList.add("position-" + j + "-" + i);
 					}
+					actionFlag = 1;
 				}
 				else {
 					// empty row
@@ -355,16 +373,18 @@ var app = {
 				}
 			}
 		}
+		return actionFlag;
 	},
 	"moveDown":function(){
 		var i;
 		var j;
+		var actionFlag = 0;
 		for(i = 0; i < 4; i++){ // i = col
 			for(j = 3; j > 0; j--){ // j = row
 
 				// node on current spot
 				var curNode = document.getElementsByClassName("position-" + j + "-" + i)[0];
-				console.log(j + "," + i + "== curNode: " + curNode);
+				// console.log(j + "," + i + "== curNode: " + curNode);
 				// search right
 				var k;
 				adjNode = undefined;
@@ -374,7 +394,7 @@ var app = {
 						break;
 					}
 				}
-				console.log(j + "," + i + "== adjNode: " + adjNode);
+				// console.log(j + "," + i + "== adjNode: " + adjNode);
 				
 				// attempt merge
 				if(curNode){
@@ -389,6 +409,7 @@ var app = {
 						adjNode.classList.add("position-" + j + "-" + i);
 						// remove current node
 						tilesDOM.removeChild(curNode);
+						actionFlag = 1;
 					}
 					else {
 						// do nothing
@@ -407,7 +428,7 @@ var app = {
 						}
 					}
 
-					console.log(j + "," + i + "== adjNode2: " + adjNode2);
+					// console.log(j + "," + i + "== adjNode2: " + adjNode2);
 
 					// attempt merge
 					if(adjNode2){
@@ -439,6 +460,7 @@ var app = {
 						adjNode.classList.remove(adjNode.classList[2]);
 						adjNode.classList.add("position-" + j + "-" + i);
 					}
+					actionFlag = 1;
 				}
 				else {
 					// empty row
@@ -446,6 +468,7 @@ var app = {
 				}
 			}
 		}
+		return actionFlag;
 	}
 }
 
