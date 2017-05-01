@@ -9,6 +9,7 @@
 var tilesDOM = document.getElementsByClassName("tiles")[0];
 var newGameButton = document.getElementById("b-newgame");
 var gameOverScreen = document.getElementById("gameover");
+var gameOverText = document.getElementById("endText");
 
 var app = {
 	"initialize": function(){
@@ -113,6 +114,7 @@ var app = {
 				setTimeout(function(){
 					// Gameover operations
 					gameOverScreen.style.display = "block";
+					gameOverText.innerHTML = "Game Over!";
 				}, 1000)
 			}
 		}
@@ -164,6 +166,16 @@ var app = {
 						tilesDOM.removeChild(curNode);
 						myCount.decCount();
 
+						// console.log(adjNode.childNodes[0].nodeValue);
+
+						if(adjNode.childNodes[0].nodeValue == 2048){
+							setTimeout(function(){
+								// Gameover operations
+								gameOverScreen.style.display = "block";
+								gameOverText.innerHTML = "You Win!";
+							}, 1000)
+						}
+
 						actionFlag = 1;
 					}
 					else {
@@ -202,6 +214,17 @@ var app = {
 							// remove current node
 							tilesDOM.removeChild(adjNode);
 							myCount.decCount();
+
+							// console.log(adjNode2.childNodes[0].nodeValue);
+
+							if(adjNode2.childNodes[0].nodeValue == 2048){
+								setTimeout(function(){
+									// Gameover operations
+									console.log("gameover");
+									gameOverScreen.style.display = "block";
+									gameOverText.innerHTML = "You Win!";
+								}, 1000)
+							}
 						}
 						else {
 							// shift only
@@ -327,6 +350,14 @@ var app = {
 						tilesDOM.removeChild(curNode);
 						myCount.decCount();
 						actionFlag = 1;
+
+						if(adjNode.childNodes[0].nodeValue == 2048){
+							setTimeout(function(){
+								// Gameover operations
+								gameOverScreen.style.display = "block";
+								gameOverText.innerHTML = "You Win!";
+							}, 1000)
+						}
 					}
 					else {
 						// do nothing
@@ -364,6 +395,14 @@ var app = {
 							// remove current node
 							tilesDOM.removeChild(adjNode);
 							myCount.decCount();
+
+							if(adjNode2.childNodes[0].nodeValue == 2048){
+								setTimeout(function(){
+									// Gameover operations
+									gameOverScreen.style.display = "block";
+									gameOverText.innerHTML = "You Win!";
+								}, 1000)
+							}
 						}
 						else {
 							// shift only
@@ -496,6 +535,13 @@ var app = {
 						tilesDOM.removeChild(curNode);
 						myCount.decCount();
 						actionFlag = 1;
+						if(adjNode.childNodes[0].nodeValue == 2048){
+							setTimeout(function(){
+								// Gameover operations
+								gameOverScreen.style.display = "block";
+								gameOverText.innerHTML = "You Win!";
+							}, 1000)
+						}
 					}
 					else {
 						// do nothing
@@ -533,6 +579,14 @@ var app = {
 							// remove current node
 							tilesDOM.removeChild(adjNode);
 							myCount.decCount();
+
+							if(adjNode2.childNodes[0].nodeValue == 2048){
+								setTimeout(function(){
+									// Gameover operations
+									gameOverScreen.style.display = "block";
+									gameOverText.innerHTML = "You Win!";
+								}, 1000)
+							}
 						}
 						else {
 							// shift only
@@ -664,6 +718,14 @@ var app = {
 						tilesDOM.removeChild(curNode);
 						myCount.decCount();
 						actionFlag = 1;
+
+						if(adjNode.childNodes[0].nodeValue == 2048){
+							setTimeout(function(){
+								// Gameover operations
+								gameOverScreen.style.display = "block";
+								gameOverText.innerHTML = "You Win!";
+							}, 1000)
+						}
 					}
 					else {
 						// do nothing
@@ -701,6 +763,14 @@ var app = {
 							// remove current node
 							tilesDOM.removeChild(adjNode);
 							myCount.decCount();
+
+							if(adjNode2.childNodes[0].nodeValue == 2048){
+								setTimeout(function(){
+									// Gameover operations
+									gameOverScreen.style.display = "block";
+									gameOverText.innerHTML = "You Win!";
+								}, 1000)
+							}
 						}
 						else {
 							// shift only
