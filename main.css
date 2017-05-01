@@ -29,6 +29,41 @@ html, body {
   	padding-top: 15px;
 }
 
+#b-newgame {
+	display: block;
+	width: 200px;
+	padding: 10px;
+	background: #bbada0;
+  	border-radius: 6px;
+  	font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  	color: #f9f6f2;
+  	font-size: 20px;
+  	margin: auto;
+  	margin-top: 50px;
+  	margin-bottom: 20px;
+}
+
+#gameover {
+	display: none;
+	position: absolute;
+	margin-left: -15px;
+	margin-top: -15px;
+	z-index: 120;
+	background-color: rgba(0,0,0,0.5);
+	height: 100%;
+	width: 100%;
+}
+
+#gameover h1 {
+	display: block;
+	color: #f9f6f2;
+	margin:0;padding:0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 .grid {
 	width: 106.25px;
 	height: 106.25px;
